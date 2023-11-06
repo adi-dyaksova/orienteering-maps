@@ -1,5 +1,6 @@
 package com.orienteering.maps.api;
 
+import com.orienteering.maps.model.Course;
 import com.orienteering.maps.model.Map;
 import com.orienteering.maps.model.MapSearchCriteria;
 import com.orienteering.maps.service.MapService;
@@ -31,14 +32,15 @@ public class MapController {
        return this.mapService.getAllMaps();
     }
 
+
     @GetMapping(path = "{id}")
-    public Map getMapById( @PathVariable("id") UUID id){
+    public Map getMapById( @PathVariable("id") Integer id){
         return mapService.getMapById(id)
                 .orElse(null);
     }
 
     @PutMapping(path = "{id}")
-    public void updateMapById(@PathVariable("id") UUID id,@Valid @NonNull @RequestBody Map newMap){
+    public void updateMapById(@PathVariable("id") Integer id,@Valid @NonNull @RequestBody Map newMap){
         mapService.updateMapById(id,newMap);
     }
 

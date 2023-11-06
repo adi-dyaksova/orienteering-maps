@@ -1,4 +1,4 @@
-package com.orienteering.maps.dao;
+/*package com.orienteering.maps.dao;
 
 import com.orienteering.maps.model.Course;
 import com.orienteering.maps.model.CourseSearchCriteria;
@@ -116,3 +116,5 @@ public class FakeMapDataAccessService implements MapDAO{
     }
 
 }
+
+ */

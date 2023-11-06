@@ -1,5 +1,6 @@
 package com.orienteering.maps.service;
 
+import com.orienteering.maps.dao.CourseDAO;
 import com.orienteering.maps.dao.MapDAO;
 import com.orienteering.maps.model.Course;
 import com.orienteering.maps.model.CourseSearchCriteria;
@@ -13,34 +14,40 @@ import java.util.UUID;
 @Service
 
 public class CourseService {
-    private final MapDAO mapDAO;
+    private final CourseDAO courseDAO;
 
     @Autowired
-    public CourseService(@Qualifier("fakeDao") MapDAO mapDAO ){
-        this.mapDAO=mapDAO;
+    public CourseService(CourseDAO courseDAO ){
+        this.courseDAO=courseDAO;
     }
 
+
     public int insertCourse(Course course){
-        return this.mapDAO.insertCourse(course);
+       return this.courseDAO.insertCourse(course);
     }
 
     public List<Course> getAllCourses(){
-        return this.mapDAO.selectAllCourses();
+        return this.courseDAO.selectAllCourses();
     }
 
-    public Optional<Course> getCourseById(UUID id){
-        return mapDAO.selectCourseById(id);
+    public Optional<Course> getCourseById(Integer id){
+        return courseDAO.selectCourseById(id);
     }
 
-    public int updateCourseById(UUID id, Course newCourse){
-        return  mapDAO.updateCourseById(id,newCourse);
+    public int updateCourseById(Integer id, Course newCourse){
+        return  courseDAO.updateCourseById(id,newCourse);
     }
 
     public List<Course> getFilteredCourses(CourseSearchCriteria courseSearchCriteria){
-        return this.mapDAO.selectFilteredCourses(courseSearchCriteria);
+        return this.courseDAO.selectFilteredCourses(courseSearchCriteria.getCategory().orElse(null),
+                courseSearchCriteria.getAgeGroup().orElse(null),
+                courseSearchCriteria.getDiscipline().orElse(null),
+                courseSearchCriteria.getControls().orElse(null),
+                courseSearchCriteria.getDistance().orElse(null),
+                courseSearchCriteria.isCompetition().orElse(null));
     }
 
-    public List<Course> getAllCoursesByMapId(UUID mapId){
-        return this.mapDAO.selectAllCoursesByMapId(mapId);
+    public List<Course> getAllCoursesByMapId(Integer mapId){
+        return this.courseDAO.selectAllCoursesByMapId(mapId);
     }
 }

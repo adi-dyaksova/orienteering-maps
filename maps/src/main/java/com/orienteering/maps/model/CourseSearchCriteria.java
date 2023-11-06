@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class CourseSearchCriteria {
 
-    private final Optional<UUID> mapId;
+    private final Optional<Integer> mapId;
     private final Optional<Course.Category> category;
     private  final Optional<Course.AgeGroup> ageGroup;
     private final Optional<Course.Discipline> discipline;
@@ -12,7 +12,7 @@ public class CourseSearchCriteria {
     private final Optional<Double> distance;
     private final Optional<Boolean> isCompetition;
 
-    public CourseSearchCriteria(Optional<UUID> mapId, Optional<Course.Category> category, Optional<Course.AgeGroup> ageGroup, Optional<Course.Discipline> discipline, Optional<Integer> controls, Optional<Double> distance, Optional<Boolean> isCompetition) {
+    public CourseSearchCriteria(Optional<Integer> mapId, Optional<Course.Category> category, Optional<Course.AgeGroup> ageGroup, Optional<Course.Discipline> discipline, Optional<Integer> controls, Optional<Double> distance, Optional<Boolean> isCompetition) {
         this.mapId = mapId;
         this.category = category;
         this.ageGroup = ageGroup;
@@ -22,7 +22,7 @@ public class CourseSearchCriteria {
         this.isCompetition = isCompetition;
     }
 
-    public Optional<UUID> getMapId() {
+    public Optional<Integer> getMapId() {
         return mapId;
     }
 

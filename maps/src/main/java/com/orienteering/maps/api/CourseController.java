@@ -35,13 +35,13 @@ public class CourseController {
     }
 
     @GetMapping(path = "{id}")
-    public Course getCourseById( @PathVariable("id") UUID id){
+    public Course getCourseById( @PathVariable("id") Integer id){
         return courseService.getCourseById(id)
                 .orElse(null);
     }
 
     @PutMapping(path = "{id}")
-    public void updateCourseById(@PathVariable("id") UUID id,@Valid @NonNull @RequestBody Course newCourse){
+    public void updateCourseById(@PathVariable("id") Integer id,@Valid @NonNull @RequestBody Course newCourse){
         courseService.updateCourseById(id,newCourse);
     }
 
@@ -51,7 +51,7 @@ public class CourseController {
     }
 
     @GetMapping(path = "/search/{id}")
-    public List<Course> getAllCoursesByMapId(@PathVariable("id") UUID mapId){
+    public List<Course> getAllCoursesByMapId(@PathVariable("id") Integer mapId){
         return  this.courseService.getAllCoursesByMapId(mapId);
     }
 }
