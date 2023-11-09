@@ -11,6 +11,8 @@ public class Map {
 @GeneratedValue()
 @Column(name="map_id")
     private Integer mapId;
+    @Column(unique=true)
+    private String name;
 
    // @NotNull
     @Column(name="map_year")
@@ -26,32 +28,38 @@ public class Map {
     //@NotNull
     private  int scale;
 
-    //String name
+    private String folderName = "D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
+
     //String description
     //coordinates - X km radius search
     //double latitude, double longitude
     // fileType?? - ocad, pdf
 
 
-    public Map(@JsonProperty("id") Integer mapId, @JsonProperty("year") int year, @JsonProperty("country") String country, @JsonProperty("city") String city, @JsonProperty("scale") int scale) {
+    public Map(@JsonProperty("id") Integer mapId,@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("country") String country, @JsonProperty("city") String city, @JsonProperty("scale") int scale) {
         this.mapId = mapId;
+        this.name=name;
         this.year = year;
         this.country = country;
         this.city = city;
         this.scale = scale;
+        this.folderName="D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
     }
 
  public Map(){
      this.mapId = 0;
+     this.name="";
      this.year = 0;
      this.country = "";
      this.city = "";
      this.scale = 0;
+     this.folderName="D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
  }
 
     public Integer getMapId() {
         return mapId;
     }
+    public String getName(){return name;}
 
     public int getYear() {
         return year;
@@ -67,6 +75,9 @@ public class Map {
     public int getScale() {
         return scale;
     }
+
+    public String getFolderName(){return folderName;}
+    public void setName(String name) {this.name=name;}
     public void setYear(int year) {
         this.year = year;
     }
@@ -79,6 +90,7 @@ public class Map {
     public void setScale(int scale) {
         this.scale = scale;
     }
+    public  void setFolderName(String folderName){this.folderName=folderName;}
     //public Map copy(Integer id){
      //   return new Map(id,this.getYear(),this.getCountry(),this.getCity(), this.getScale());
     //}

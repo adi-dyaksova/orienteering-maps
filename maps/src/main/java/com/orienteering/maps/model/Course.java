@@ -93,10 +93,6 @@ public class Course {
         return category;
     }
 
-    //public Map getMap() {
-//        return map;
-//    }
-
     public AgeGroup getAgeGroup() {
         return ageGroup;
     }
@@ -129,7 +125,5 @@ public class Course {
     public void setIsCompetition(boolean isCompetition) {
         this.isCompetition = isCompetition;
     }
-
-
 
 }
