@@ -11,27 +11,28 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class MapService {
     private final MapDAO mapDAO;
+    private final FileService fileService;
 
     @Autowired
-    public MapService( MapDAO mapDAO ){
+    public MapService(MapDAO mapDAO, FileService fileService){
         this.mapDAO=mapDAO;
+        this.fileService = fileService;
     }
 
-    public int insertMap(Map map) throws IOException {
+    public int insertMap(Map map) {
         return this.mapDAO.insertMap(map);
     }
 
     public List<Map> getAllMaps(){
-        return this.mapDAO.selectAllMaps();
+        return this.mapDAO.getAllMaps();
     }
 
     public Optional<Map> getMapById(Integer id){
-        return mapDAO.selectMapById(id);
+        return mapDAO.getMapById(id);
     }
 
     public int updateMapById(Integer id, Map newMap){
@@ -39,7 +40,7 @@ public class MapService {
     }
 
     public List<Map> getFilteredMaps(MapSearchCriteria mapSearchCriteria) {
-        return mapDAO.selectFilteredMaps(
+        return mapDAO.getFilteredMaps(
                 mapSearchCriteria.getName().orElse(null),
                 mapSearchCriteria.getYear().orElse(null),
                 mapSearchCriteria.getCountry().orElse(null),
@@ -48,11 +49,18 @@ public class MapService {
         );
     }
 
-    public void uploadFile(Integer mapId, MultipartFile file) throws IOException {
-        this.mapDAO.uploadFile(mapId,file);
+    public void uploadMapFile(Integer mapId, MultipartFile file) throws IOException {
+        Optional<Map> map = this.getMapById(mapId);
+        if(map.isPresent()){
+            this.fileService.uploadFile("maps\\"+ mapId,file);
+        }
     }
 
     public byte[] getMapFile(Integer mapId) throws IOException {
-        return  this.mapDAO.getMapFile(mapId);
+        Optional<Map> map = this.getMapById(mapId);
+        if(map.isPresent()){
+            return this.fileService.getFile("maps\\"+mapId);
+        }
+       return null;
     }
 }

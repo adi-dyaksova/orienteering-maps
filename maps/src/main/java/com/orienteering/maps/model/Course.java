@@ -56,7 +56,6 @@ public class Course {
     private  Integer courseId;
     @ManyToOne(targetEntity = Map.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "map_id", insertable = false, updatable = false)
-
     private  Map map;
 
     @Column(name = "map_id")
@@ -65,6 +64,8 @@ public class Course {
     private  AgeGroup ageGroup;
     private  Discipline discipline;
     private  int controls;
+    private  double distance;
+    private  boolean isCompetition;
 
     public Integer getCourseId() {
         return courseId;
@@ -97,15 +98,6 @@ public class Course {
         return ageGroup;
     }
 
-    private  double distance;
-    // fileType?? - ocad, pdf
-    private  boolean isCompetition;
-
-
-   // public Course copy(Integer id){
-     //   return new Course(id, this.mapId, this.category,this.ageGroup,this.discipline,this.controls,this.distance,this.isCompetition);
-   // }
-
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -118,7 +110,6 @@ public class Course {
     public void setControls(int controls) {
         this.controls = controls;
     }
-
     public void setDistance(double distance) {
         this.distance = distance;
     }

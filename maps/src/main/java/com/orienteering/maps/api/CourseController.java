@@ -2,16 +2,17 @@ package com.orienteering.maps.api;
 
 import com.orienteering.maps.model.Course;
 import com.orienteering.maps.model.CourseSearchCriteria;
-import com.orienteering.maps.model.Map;
-import com.orienteering.maps.model.MapSearchCriteria;
 import com.orienteering.maps.service.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @RequestMapping("api/v1/course")
 @RestController
@@ -25,7 +26,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public void addCourse(@Valid @NonNull @RequestBody Course course){
+    public void insertCourse(@Valid @NonNull @RequestBody Course course){
         this.courseService.insertCourse(course);
     }
 
@@ -54,4 +55,17 @@ public class CourseController {
     public List<Course> getAllCoursesByMapId(@PathVariable("id") Integer mapId){
         return  this.courseService.getAllCoursesByMapId(mapId);
     }
+
+    @PostMapping(path = "/{id}/uploadCourseFile")
+    public void uploadCourseFile(@PathVariable("id") Integer courseId, @RequestParam("file") MultipartFile file) throws IOException {
+        courseService.uploadCourseFile(courseId,file);
+    }
+
+    @GetMapping(path = "/{id}/getCourseFile")
+    public ResponseEntity<byte[]> getCourseFile(@PathVariable("id") Integer courseId) throws IOException {
+        byte[] data= courseService.getCourseFile(courseId);
+        return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+
 }

@@ -8,25 +8,23 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface CourseDAO extends JpaRepository<Course,Integer> {
-
-    default public int insertCourse(Course course) {
+public interface CourseDAO extends CourseDAOInterface, JpaRepository<Course, Integer> {
+    default int insertCourse(Course course) {
         this.save(course);
         return 1;
     }
 
-
-    default public List<Course> selectAllCourses() {
+    default List<Course> getAllCourses() {
         return this.findAll();
     }
 
 
-    default  public Optional<Course> selectCourseById(Integer id) {
+    default Optional<Course> getCourseById(Integer id) {
         return this.findById(id);
     }
 
 
-    default public int updateCourseById(Integer id, Course newCourse) {
+     default int updateCourseById(Integer id, Course newCourse) {
         Optional<Course> courseToUpdate = this.findById(id);
 
         if (courseToUpdate.isPresent()) {
@@ -50,7 +48,7 @@ public interface CourseDAO extends JpaRepository<Course,Integer> {
             "AND (:controlsFilter IS NULL OR c.controls = :controlsFilter)"+
             "AND (:distanceFilter IS NULL OR c.distance = :distanceFilter)"+
             "AND (:isCompetitionFilter IS NULL OR c.isCompetition = :isCompetitionFilter)")
-     List<Course> selectFilteredCourses(@Param("categoryFilter") Course.Category categoryFilter,
+     List<Course> getFilteredCourses(@Param("categoryFilter") Course.Category categoryFilter,
                                         @Param("ageGroupFilter") Course.AgeGroup ageGroupFilter,
                                         @Param("disciplineFilter") Course.Discipline disciplineFilter,
                                         @Param("controlsFilter") Integer controlsFilter,
@@ -60,7 +58,6 @@ public interface CourseDAO extends JpaRepository<Course,Integer> {
 
     @Query("SELECT c FROM Course c " +
             "WHERE c.mapId = :map_id ")
-    List<Course> selectAllCoursesByMapId(@Param("map_id") Integer map_id);
-
+    List<Course> getAllCoursesByMapId(@Param("map_id") Integer map_id);
 
 }

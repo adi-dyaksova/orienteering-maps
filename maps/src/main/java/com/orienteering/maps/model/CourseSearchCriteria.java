@@ -1,6 +1,5 @@
 package com.orienteering.maps.model;
 import java.util.Optional;
-import java.util.UUID;
 
 public class CourseSearchCriteria {
 

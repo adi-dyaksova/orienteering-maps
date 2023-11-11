@@ -2,6 +2,8 @@ package com.orienteering.maps.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 //import org.hibernate.validator.constraints.NotBLank;
 
 @Entity
@@ -14,36 +16,28 @@ public class Map {
     @Column(unique=true)
     private String name;
 
-   // @NotNull
+    @NotNull
     @Column(name="map_year")
-    private int year;
-    //private final Date datee;
-    //Date(int year, int month, int date)
-  //  @NotNull
-   // @NotBlank
+    private Integer year;
+   @NotNull
+   @NotBlank
     private  String country;
- //   @NotNull
-   // @NotBlank
+  @NotNull
+  @NotBlank
     private  String city;
-    //@NotNull
-    private  int scale;
+  @NotNull
+    private  Integer scale;
 
-    private String folderName = "D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
+    private String description;
 
-    //String description
-    //coordinates - X km radius search
-    //double latitude, double longitude
-    // fileType?? - ocad, pdf
-
-
-    public Map(@JsonProperty("id") Integer mapId,@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("country") String country, @JsonProperty("city") String city, @JsonProperty("scale") int scale) {
+    public Map(@JsonProperty("id") Integer mapId,@JsonProperty("name") String name, @JsonProperty("year") Integer year, @JsonProperty("country") String country, @JsonProperty("city") String city, @JsonProperty("scale") Integer scale,@JsonProperty("description") String description) {
         this.mapId = mapId;
         this.name=name;
         this.year = year;
         this.country = country;
         this.city = city;
         this.scale = scale;
-        this.folderName="D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
+        this.description=description;
     }
 
  public Map(){
@@ -53,7 +47,7 @@ public class Map {
      this.country = "";
      this.city = "";
      this.scale = 0;
-     this.folderName="D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
+     this.description="";
  }
 
     public Integer getMapId() {
@@ -76,7 +70,7 @@ public class Map {
         return scale;
     }
 
-    public String getFolderName(){return folderName;}
+    public String getDescription(){return description;}
     public void setName(String name) {this.name=name;}
     public void setYear(int year) {
         this.year = year;
@@ -90,8 +84,6 @@ public class Map {
     public void setScale(int scale) {
         this.scale = scale;
     }
-    public  void setFolderName(String folderName){this.folderName=folderName;}
-    //public Map copy(Integer id){
-     //   return new Map(id,this.getYear(),this.getCountry(),this.getCity(), this.getScale());
-    //}
+    public  void setDescription(String description){this.description=description;}
+
 }
