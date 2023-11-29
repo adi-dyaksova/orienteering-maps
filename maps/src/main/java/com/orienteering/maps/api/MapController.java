@@ -17,6 +17,7 @@ import java.util.List;
 
 @RequestMapping("api/v1/map")
 @RestController
+@CrossOrigin("*") //TODO
 public class MapController {
     private final MapService mapService;
 
@@ -48,7 +49,7 @@ public class MapController {
     }
 
     @PostMapping(path = "/search")
-    public List<Map> getFilteredMaps( @Valid @NonNull @RequestBody MapSearchCriteria mapSearchCriteria){ //???? @Valid @NonNull
+    public List<Map> getFilteredMaps( @Valid @NonNull @RequestBody MapSearchCriteria mapSearchCriteria){
         return this.mapService.getFilteredMaps(mapSearchCriteria);
     }
 
@@ -60,7 +61,7 @@ public class MapController {
     @GetMapping(path = "/{id}/getMapFile")
     public ResponseEntity<byte[]> getMapFile(@PathVariable("id") Integer mapId) throws IOException {
        byte[] data= mapService.getMapFile(mapId);
-        return ResponseEntity.status(HttpStatus.OK).body(data);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_PDF).body(data);
     }
 
 }
