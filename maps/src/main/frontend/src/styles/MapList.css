@@ -1,0 +1,95 @@
+body{
+    font-family: 'Montserrat';
+}
+
+.searchbar-addmap-wrapper{
+    display: flex;
+    flex-direction: row;
+    /* justify-content:center; */
+    justify-content:flex-start;
+    margin-left:31%;
+    margin-bottom: 4em;
+}
+
+.map-list-wrapper{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.add-map-btn{
+    margin:0;
+    /* margin-top: 0;
+    margin-right:18%; */
+    /* font-size: 1em; */
+}
+ .filters-background{
+    /* background-color: #f4f4f4; */
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-top: 1em;
+    border-radius: 5px;
+    border-top: 1px solid #ccc;
+} 
+.filters-title{
+    /* margin-left:15%; */
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    margin: 0;
+    margin-left: 25%;
+    width: 50%;
+    
+}
+/* 
+.filters-btn-wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+
+} */
+
+.display-col{
+    display: flex;
+    flex-direction: column;
+    /* border-right: 1px solid #ccc; */
+}
+
+.display-row{
+    display: flex;
+    flex-direction: row;   
+    justify-content: center;
+}
+
+/* .filters-img{
+    /* filter: brightness(100); 
+    width:2em;
+    height:2em;
+    margin-right: 1em;
+} */
+.filters-img{
+     filter: brightness(0); 
+    width:1.5em;
+    height:1.5em;
+    margin-right: 0.5em;
+}
+
+.grey-left-border{
+    border-left: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    /* border-top: 0; */
+  }
+
+  .grey-right-border{
+    border-right: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    /* border-top: 0; */
+  }
+
+  .not-found-msg{
+    margin:auto
+  }
+  /* !!!course list page :only */
+  .course-page-wrapper{
+    width: 16.3em;
+  }

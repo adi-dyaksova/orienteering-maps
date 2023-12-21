@@ -1,0 +1,16 @@
+
+.rc-slider-track {
+    background-color: #007bff;
+    background-color: #6c6c6c;
+  }
+  
+  .rc-slider-handle {
+    border-color: #007bff;
+    border-color: #6c6c6c;
+    &:active,
+    &:focus {
+      box-shadow: 0 0 5px #007bff;
+      box-shadow: 0 0 5px #6c6c6c;
+    }
+  }
+  

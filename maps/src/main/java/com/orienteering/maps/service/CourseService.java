@@ -45,8 +45,10 @@ public class CourseService {
         return this.courseDAO.getFilteredCourses(courseSearchCriteria.getCategory().orElse(null),
                 courseSearchCriteria.getAgeGroup().orElse(null),
                 courseSearchCriteria.getDiscipline().orElse(null),
-                courseSearchCriteria.getControls().orElse(null),
-                courseSearchCriteria.getDistance().orElse(null),
+                courseSearchCriteria.getMinControls().orElse(null),
+                courseSearchCriteria.getMaxControls().orElse(null),
+                courseSearchCriteria.getMinDistance().orElse(null),
+                courseSearchCriteria.getMaxDistance().orElse(null),
                 courseSearchCriteria.isCompetition().orElse(null));
     }
 

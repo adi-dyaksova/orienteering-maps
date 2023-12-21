@@ -21,4 +21,5 @@ public interface MapDAOInterface {
                                String countryFilter,
                                String cityFilter,
                                Integer scaleFilter);
+    List<Map> getSearchedMaps(String searchTermValue);
 }

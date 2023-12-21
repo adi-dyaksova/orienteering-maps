@@ -9,8 +9,8 @@ import java.util.*;
 public interface MapDAO extends MapDAOInterface, JpaRepository<Map,Integer> {
 
     default int insertMap(Map map) {
-         this.save(map);
-         return 1;
+        Map result = this.save(map);
+         return result.getMapId();
     }
 
     default List<Map> getAllMaps() {
@@ -40,14 +40,22 @@ public interface MapDAO extends MapDAOInterface, JpaRepository<Map,Integer> {
 
 
     @Query("SELECT m FROM Map m " +
-            "WHERE (:nameFilter IS NULL OR m.name = :nameFilter) " +
-            "AND (:yearFilter IS NULL OR m.year = :yearFilter) " +
-            "AND (:countryFilter IS NULL OR m.country = :countryFilter) " +
-            "AND (:cityFilter IS NULL OR m.city = :cityFilter) " +
-            "AND (:scaleFilter IS NULL OR m.scale = :scaleFilter)")
+            "WHERE (:nameFilter IS NULL OR :nameFilter = '' OR m.name = :nameFilter) " +
+            "AND (:yearFilter IS NULL OR :yearFilter = '' OR m.year = :yearFilter) " +
+            "AND (:countryFilter IS NULL OR :countryFilter = '' OR m.country = :countryFilter) " +
+            "AND (:cityFilter IS NULL OR :cityFilter = '' OR m.city = :cityFilter) " +
+            "AND (:scaleFilter IS NULL OR :scaleFilter = '' OR m.scale = :scaleFilter)")
     List<Map> getFilteredMaps( @Param("nameFilter") String nameFilter,
                                 @Param("yearFilter") Integer yearFilter,
                                  @Param("countryFilter") String countryFilter,
                                  @Param("cityFilter") String cityFilter,
                                  @Param("scaleFilter") Integer scaleFilter);
+    @Query("SELECT m FROM Map m " +
+            "WHERE"+
+            "(:searchTermValue IS NULL OR :searchTermValue = '') OR " +
+            "LOWER(m.name) LIKE CONCAT('%', LOWER(:searchTermValue), '%') " +
+            "OR LOWER(m.country) LIKE CONCAT('%', LOWER(:searchTermValue), '%') " +
+            "OR LOWER(m.city) LIKE CONCAT('%', LOWER(:searchTermValue), '%')" +
+            "OR LOWER(m.description) LIKE CONCAT('%', LOWER(:searchTermValue), '%') " )
+    List<Map> getSearchedMaps(@Param("searchTermValue") String searchTermValue);
 }

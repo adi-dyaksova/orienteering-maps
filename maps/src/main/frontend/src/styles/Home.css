@@ -1,0 +1,34 @@
+.home-page-wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+.home-page-ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;   
+
+}
+
+.home-page-li{
+    padding: 0.3em;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.home-page-li:before {
+
+    display: inline-block;
+    height: 2em;
+    width: 2.5em;
+    margin-right: 0.5em;
+    content: "";
+    background:url('../../public/images/check.png') no-repeat 0 0;
+    background-size: 1.5em 1.5em;
+}
+
+.home-page-content-wrapper{
+    width: 50%;
+}

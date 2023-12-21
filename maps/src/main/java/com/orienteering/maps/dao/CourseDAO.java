@@ -1,6 +1,7 @@
 package com.orienteering.maps.dao;
 
 import com.orienteering.maps.model.Course;
+import com.orienteering.maps.model.Map;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,8 +11,8 @@ import java.util.Optional;
 
 public interface CourseDAO extends CourseDAOInterface, JpaRepository<Course, Integer> {
     default int insertCourse(Course course) {
-        this.save(course);
-        return 1;
+        Course result = this.save(course);
+        return result.getCourseId();
     }
 
     default List<Course> getAllCourses() {
@@ -41,19 +42,37 @@ public interface CourseDAO extends CourseDAOInterface, JpaRepository<Course, Int
         return 0;
     }
 
+    //@Query("SELECT c FROM Course c " +
+      //      "WHERE (:categoryFilter IS NULL  OR c.category = :categoryFilter) " +
+        //    "AND (:ageGroupFilter IS NULL  OR c.ageGroup = :ageGroupFilter) " +
+          //  "AND (:disciplineFilter IS NULL OR c.discipline = :disciplineFilter) " +
+        //    "AND (:controlsFilter IS NULL  OR c.controls = :controlsFilter)"+
+          //  "AND (:distanceFilter IS NULL OR c.distance = :distanceFilter)"+
+           // "AND (:isCompetitionFilter IS NULL OR c.isCompetition = :isCompetitionFilter)")
+     //List<Course> getFilteredCourses(@Param("categoryFilter") Course.Category categoryFilter,
+       //                                 @Param("ageGroupFilter") Course.AgeGroup ageGroupFilter,
+         //                               @Param("disciplineFilter") Course.Discipline disciplineFilter,
+           //                             @Param("controlsFilter") Integer controlsFilter,
+             //                           @Param("distanceFilter") Double distanceFilter,
+               //                         @Param("isCompetitionFilter") Boolean isCompetitionFilter);
+
     @Query("SELECT c FROM Course c " +
             "WHERE (:categoryFilter IS NULL OR c.category = :categoryFilter) " +
             "AND (:ageGroupFilter IS NULL OR c.ageGroup = :ageGroupFilter) " +
             "AND (:disciplineFilter IS NULL OR c.discipline = :disciplineFilter) " +
-            "AND (:controlsFilter IS NULL OR c.controls = :controlsFilter)"+
-            "AND (:distanceFilter IS NULL OR c.distance = :distanceFilter)"+
+            "AND (:minControlsFilter IS NULL OR c.controls >= :minControlsFilter) " +
+            "AND (:maxControlsFilter IS NULL OR c.controls <= :maxControlsFilter) " +
+            "AND (:minDistanceFilter IS NULL OR c.distance >= :minDistanceFilter) " +
+            "AND (:maxDistanceFilter IS NULL OR c.distance <= :maxDistanceFilter) " +
             "AND (:isCompetitionFilter IS NULL OR c.isCompetition = :isCompetitionFilter)")
-     List<Course> getFilteredCourses(@Param("categoryFilter") Course.Category categoryFilter,
-                                        @Param("ageGroupFilter") Course.AgeGroup ageGroupFilter,
-                                        @Param("disciplineFilter") Course.Discipline disciplineFilter,
-                                        @Param("controlsFilter") Integer controlsFilter,
-                                        @Param("distanceFilter") Double distanceFilter,
-                                        @Param("isCompetitionFilter") Boolean isCompetitionFilter);
+    List<Course> getFilteredCourses(@Param("categoryFilter") Course.Category categoryFilter,
+                                    @Param("ageGroupFilter") Course.AgeGroup ageGroupFilter,
+                                    @Param("disciplineFilter") Course.Discipline disciplineFilter,
+                                    @Param("minControlsFilter") Integer minControlsFilter,
+                                    @Param("maxControlsFilter") Integer maxControlsFilter,
+                                    @Param("minDistanceFilter") Double minDistanceFilter,
+                                    @Param("maxDistanceFilter") Double maxDistanceFilter,
+                                    @Param("isCompetitionFilter") Boolean isCompetitionFilter);
 
 
     @Query("SELECT c FROM Course c " +

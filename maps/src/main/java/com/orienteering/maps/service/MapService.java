@@ -31,6 +31,7 @@ public class MapService {
         return this.mapDAO.getAllMaps();
     }
 
+
     public Optional<Map> getMapById(Integer id){
         return mapDAO.getMapById(id);
     }
@@ -62,5 +63,9 @@ public class MapService {
             return this.fileService.getFile("maps\\"+mapId);
         }
        return null;
+    }
+
+    public List<Map> getSearchedMaps(String searchTermValue){
+        return this.mapDAO.getSearchedMaps(searchTermValue);
     }
 }

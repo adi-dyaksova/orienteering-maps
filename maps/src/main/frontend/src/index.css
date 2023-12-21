@@ -1,5 +1,10 @@
+/* :root{
+  --bg-color: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url("./images/background.jpg");
+} */
 body {
-  margin: 0;
+  min-width: 1300px;
+  margin: 0 auto; /* Center the content horizontally */
+  /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -16,7 +21,7 @@ code {
   
 }
 
-.addMapForm{
+form{
   width: 50%;
   border: black;
   display: flex;
@@ -26,6 +31,15 @@ code {
 }
 
 button{
-  width: 50%;
   margin: auto auto ;
+  border-radius: 10px !important;
+}
+
+.react-pdf__Page__textContent.textLayer,
+.react-pdf__Page__annotations.annotationLayer {
+  display: none; /* Hide the text content and annotations layers */
+}
+
+.bold{
+  font-weight: bold;
 }

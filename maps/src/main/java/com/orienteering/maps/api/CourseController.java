@@ -2,10 +2,12 @@ package com.orienteering.maps.api;
 
 import com.orienteering.maps.model.Course;
 import com.orienteering.maps.model.CourseSearchCriteria;
+import com.orienteering.maps.model.Map;
 import com.orienteering.maps.service.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +28,17 @@ public class CourseController {
     }
 
     @PostMapping
-    public void insertCourse(@Valid @NonNull @RequestBody Course course){
-        this.courseService.insertCourse(course);
+    public int insertCourse(@Valid @NonNull @RequestBody Course course){
+       return this.courseService.insertCourse(course);
+    }
+
+    @PostMapping(path = "/insertCourseAndUploadFile")
+    public void insertCourseAndFile(
+            @RequestPart("file") MultipartFile file,
+            @RequestPart("course") @Valid Course course
+    ) throws IOException {
+        Integer courseId = this.courseService.insertCourse(course);
+        this.uploadCourseFile(courseId, file);
     }
 
     @GetMapping
@@ -46,12 +57,12 @@ public class CourseController {
         courseService.updateCourseById(id,newCourse);
     }
 
-    @PostMapping(path = "/search")
+    @PostMapping(path = "/filter")
     public List<Course> getFilteredCourses( @Valid @NonNull @RequestBody CourseSearchCriteria courseSearchCriteria){ //???? @Valid @NonNull
         return this.courseService.getFilteredCourses(courseSearchCriteria);
     }
 
-    @GetMapping(path = "/search/{id}")
+    @GetMapping(path = "/filter/{id}")
     public List<Course> getAllCoursesByMapId(@PathVariable("id") Integer mapId){
         return  this.courseService.getAllCoursesByMapId(mapId);
     }
@@ -64,8 +75,9 @@ public class CourseController {
     @GetMapping(path = "/{id}/getCourseFile")
     public ResponseEntity<byte[]> getCourseFile(@PathVariable("id") Integer courseId) throws IOException {
         byte[] data= courseService.getCourseFile(courseId);
-        return ResponseEntity.status(HttpStatus.OK).body(data);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_PDF).body(data);
     }
+
 
 
 }

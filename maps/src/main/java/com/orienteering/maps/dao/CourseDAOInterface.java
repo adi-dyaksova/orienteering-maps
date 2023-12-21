@@ -16,8 +16,10 @@ public interface CourseDAOInterface {
     List<Course> getFilteredCourses(Course.Category categoryFilter,
                                     Course.AgeGroup ageGroupFilter,
                                     Course.Discipline disciplineFilter,
-                                    Integer controlsFilter,
-                                    Double distanceFilter,
+                                    Integer minControlsFilter,
+                                    Integer maxControlsFilter,
+                                    Double minDistanceFilter,
+                                    Double maxDistanceFilter,
                                     Boolean isCompetitionFilter);
 
     List<Course> getAllCoursesByMapId(Integer map_id);

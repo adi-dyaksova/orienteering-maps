@@ -2,6 +2,7 @@ package com.orienteering.maps.api;
 
 import com.orienteering.maps.model.Map;
 import com.orienteering.maps.model.MapSearchCriteria;
+import com.orienteering.maps.model.SearchTerm;
 import com.orienteering.maps.service.MapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,17 @@ public class MapController {
     }
 
     @PostMapping
-    public void insertMap(@Valid @NonNull @RequestBody Map map) throws IOException {
-        this.mapService.insertMap(map);
+    public int insertMap(@Valid @NonNull @RequestBody Map map) throws IOException {
+         return this.mapService.insertMap(map);
+    }
+
+    @PostMapping(path = "/insertMapAndUploadFile")
+    public void insertMapAndFile(
+            @RequestPart("file") MultipartFile file,
+            @RequestPart("map") @Valid Map map
+    ) throws IOException {
+        Integer mapId = this.mapService.insertMap(map);
+        this.uploadMapFile(mapId, file);
     }
 
     @GetMapping
@@ -48,7 +58,7 @@ public class MapController {
         mapService.updateMapById(id,newMap);
     }
 
-    @PostMapping(path = "/search")
+    @PostMapping(path = "/filter")
     public List<Map> getFilteredMaps( @Valid @NonNull @RequestBody MapSearchCriteria mapSearchCriteria){
         return this.mapService.getFilteredMaps(mapSearchCriteria);
     }
@@ -62,6 +72,11 @@ public class MapController {
     public ResponseEntity<byte[]> getMapFile(@PathVariable("id") Integer mapId) throws IOException {
        byte[] data= mapService.getMapFile(mapId);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_PDF).body(data);
+    }
+
+    @PostMapping(path = "/search")
+    public List<Map> getSearchedMaps(@RequestBody SearchTerm searchTerm){
+        return this.mapService.getSearchedMaps(searchTerm.getValue());
     }
 
 }
