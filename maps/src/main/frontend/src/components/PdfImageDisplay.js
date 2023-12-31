@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
+import '../styles/PdfImageDisplay.css'; // Import the external CSS file
 
 const PdfImageDisplay = ({ pdfUrl }) => {
   const [numPages, setNumPages] = useState(null);
@@ -12,11 +13,11 @@ const PdfImageDisplay = ({ pdfUrl }) => {
   pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop:'2em', border:'1px solid #ccc'}}>
+    <div className="pdf-container">
       <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
+        <Page pageNumber={pageNumber} className="pdf-page" width={500} />
       </Document>
-      <p style={{ margin: 0 }}>
+      <p className="page-info">
         Page {pageNumber} of {numPages}
       </p>
     </div>

@@ -72,7 +72,7 @@ export default function CourseList() {
 
 <>
 <div className="searchbar-addmap-wrapper">
-<SearchBar/>
+{/* <SearchBar/>s */}
   </div>
 
 {/* <div className="filters-btn-wrapper"> */}

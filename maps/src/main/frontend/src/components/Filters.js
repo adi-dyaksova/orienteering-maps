@@ -39,14 +39,13 @@ export default function Filters({ handleMapList }) {
 
   function handleReset() {
     setInputs({});
-     setResetFilters(true); // Set the flag to indicate reset
+    setResetFilters(true); // Set the flag to indicate reset
   }
 
 
   function handleSubmit(event) {
     event.preventDefault();
      handleMapList(inputs);
-  
   }
 
   return (

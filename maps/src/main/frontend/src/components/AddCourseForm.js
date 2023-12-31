@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios"; 
+import { useNavigate } from "react-router-dom";
 import {useDropzone} from 'react-dropzone';
 import { useParams } from "react-router-dom";
 
 import categories from "../categories.js";
 import disciplines from "../disciplines.js";
 import ageGroups from "../ageGroups.js";
+
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import '../styles/AddForm.css'; 
 
 export default function CourseForm (){
@@ -13,6 +17,9 @@ export default function CourseForm (){
     const [inputs, setInputs] = useState({mapId:id});
     
     const [file,setFile] =useState(); //initial value=??
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
     const onDrop = (acceptedFiles) => { 
       console.log(acceptedFiles);
       setFile(acceptedFiles[0]);
@@ -49,26 +56,54 @@ export default function CourseForm (){
       formData.append("file", file);
       formData.append("course", blob);
   
-      axios.post(`http://localhost:8080/api/v1/course/insertCourseAndUploadFile`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      // axios.post(`http://localhost:8080/api/v1/course/insertCourseAndUploadFile`,
+      // formData,
+      // {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data"
+      //   }
+      // }
+      // ).then (() => {
+      //   console.log("course added and file uploaded successfully")
+      // }).catch( err => {
+      //   console.log(err);
+      // });
+
+      try {
+        // Make a POST request to your server endpoint with the form data
+        const response = await axios.post(`http://localhost:8080/api/v1/course/insertCourseAndUploadFile`,
+         formData,      {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+  
+        // Check the response status and update the state accordingly
+        if (response.status === 200) {
+          setSuccessMessage("Course added and file uploaded successfully!");
+          setErrorMessage(""); // Reset error message
+        } else {
+          setSuccessMessage(""); // Reset success message
+          setErrorMessage("Error: Course not added or file not uploaded.");
         }
+      } catch (error) {
+        console.error("Error:", error);
+        setSuccessMessage(""); // Reset success message
+        setErrorMessage("Map not added or file not uploaded.");
       }
-      ).then (() => {
-        console.log("course added and file uploaded successfully")
-      }).catch( err => {
-        console.log(err);
-      });
 
      }
 
-  
+     function handleClose(){
+      setErrorMessage("");
+      setSuccessMessage("");
+      navigate(`/addCourse/${id}`);
+    }
+
     return (
       <>
       <p className="add-form-title">Add Course Form</p>
-      <form className="add-form" onSubmit={handleSubmit}>
+      { !successMessage && !errorMessage && <form className="add-form" onSubmit={handleSubmit}>
            <select id="category" name="category" value={inputs.category || ''} onChange={handleChange}>
               <option value="">Select category</option>
               {categories.map((category) => (
@@ -122,7 +157,17 @@ export default function CourseForm (){
         }
       </div>
           <button type="submit" >Submit</button>
-          </form>
+          </form>}
+
+          {successMessage && <Alert className="alert" severity="success" onClose={handleClose}>
+        <AlertTitle>Success</AlertTitle>
+        {successMessage}
+      </Alert>}
+
+     { errorMessage && <Alert className="alert" severity="error" onClose={handleClose}>
+        <AlertTitle>Error</AlertTitle>
+        {errorMessage}
+      </Alert>}
           </>
     )
   }

@@ -12,6 +12,8 @@ import "../styles/MapList.css"
 export default function MapList() {
   const [maps, setMaps] = useState([]);
   // const [showFilters, setShowFilters] = useState(false);
+  // const [inputs, setInputs] = useState({});
+  // const [resetFilters,setResetFilters]=useState(false);
   const navigate = useNavigate();
   
 
@@ -46,7 +48,9 @@ export default function MapList() {
           .catch((err) => {
             console.log(err);
           });
+
   }
+
   function handleSearch(searchTerm){ //TODO: reset button as well
     console.log("handle searchTerm");
     console.log(searchTerm);
@@ -62,13 +66,13 @@ export default function MapList() {
           });
   }
 
+
   return (
     <>
-    
      <div className="searchbar-addmap-wrapper">
     <SearchBar handleSearch={handleSearch}/>
     <button className="add-map-btn" onClick={handleAddMapClick}> Add map </button>
-       </div>
+    </div>
  
    {/* <div className="filters-btn-wrapper"> */}
     {/* </div>https://icons8.com/icon/69913/slider */}

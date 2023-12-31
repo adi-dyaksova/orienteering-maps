@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import '../styles/SearchBar.css'; 
-import MapListItem from './MapListItem';
-import axios from 'axios';
+
 
 
 const SearchBar = ({handleSearch}) => {
@@ -11,8 +10,13 @@ const SearchBar = ({handleSearch}) => {
 // const [maps,setMaps]=useState([]);
 
 const handleChange = (event) => {
-  setSearchTerm({value:event.target.value});
-};
+  const newValue = event.target.value;
+  setSearchTerm((prevSearchTerm) => {
+    return { value: newValue };
+  });
+  handleSearch({ value: newValue });
+ // handleReset();
+}
 
 
 // function handleSearch(){ //TODO: reset button as well
@@ -34,9 +38,9 @@ const handleChange = (event) => {
     <div className="search-bar-wrapper">
     <div className="search-bar">
       <FaSearch className="search-icon" />
-      <input type="text" placeholder="Type something" className="search-input" onChange={handleChange}/>      
+      <input type="text" placeholder="Type something" className="search-input" onChange={handleChange} />      
     </div>
-    <button className='search-btn' onClick={()=>handleSearch(searchTerm)}> Search </button>
+    {/* <button className='search-btn' onClick={()=>handleSearch(searchTerm)}> Search </button> */}
     </div>
         {/* <div className='result-maps-wrapper'>
         {maps.length > 0 ? (
