@@ -1,45 +1,46 @@
-.add-form{
-    background-color: #f4f4f4; 
-/* background-color: #dce0e2; */
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    margin: 2em auto;
-    row-gap: 10px;
-    align-items: center;
-    border: 1px solid #e0e0e0;
-    padding: 1em;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.add-form {
+  background-color: #f4f4f4;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 2em auto;
+  row-gap: 10px;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.add-form-title{
-    text-align: center;
-    margin: 1.3em;
-    font-size: 1.5em; 
-    color: #333; 
+.add-form-title {
+  text-align: center;
+  margin: 1.3em;
+  font-size: 1.5em;
+  color: #333;
 }
 
 .add-form > div {
-    padding: 0.5em;
-    border: 1px dashed #ccc; /* Dashed border */
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: #fff; /* White background */
+  padding: 0.5em;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #fff;
 }
-/* .add-form > div.active {
-    border-color: #007bff; 
-    background-color: #f0f8ff; 
-} */
 
-.alert{
-    width: 50%;
-    margin: auto;
-    border: 1px solid #ccc;
-    border-radius: 5px !important;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+.alert {
+  width: 50%;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  .add-form {
+    width: 80%;
+  }
 }

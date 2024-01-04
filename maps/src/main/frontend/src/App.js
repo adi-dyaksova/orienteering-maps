@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import "./App.css";
 import MapList from "./components/MapList.js";
 import AddMapForm from "./components/AddMapForm.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -16,10 +16,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="home" element={<Home />} />
-        <Route
-          index
-          element={<Home />}
-        />
+        <Route index element={<Home />} />
         <Route path="maps" element={<MapList />} />
         <Route path="courses" element={<CourseList />} />
         <Route path="addMap" element={<AddMapForm />} />

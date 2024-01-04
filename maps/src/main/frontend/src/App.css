@@ -1,11 +1,12 @@
-
-
 body {
-  
-    background-color: #f4f4f4;
-    font-family: 'Arial', sans-serif;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url("../public/images/background.jpg");
-    background-size: auto auto;
-    background-size: cover;
-    margin: 0;
-  }
+  background-color: #f4f4f4;
+  font-family: "Arial", sans-serif;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url("../public/images/background.jpg");
+  background-size: auto auto;
+  background-size: cover;
+  margin: 0;
+}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import '../styles/PdfImageDisplay.css'; // Import the external CSS file
+import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import "../styles/PdfImageDisplay.css";
 
 const PdfImageDisplay = ({ pdfUrl }) => {
   const [numPages, setNumPages] = useState(null);

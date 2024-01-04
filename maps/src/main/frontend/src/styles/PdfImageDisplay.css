@@ -1,18 +1,16 @@
-/* PdfImageDisplay.css */
 .pdf-container {
-    display: flex ; 
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2em;
-    border: 1px solid #ccc;
-    max-width: 500px; /* Set your desired max-width */
-  }
-  
-  .pdf-page {
-    width: 100%; /* Use 100% width for flexibility */
-  }
-  
-  .page-info {
-    margin: 0;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+  border: 1px solid #ccc;
+  max-width: 500px;
+}
+
+.pdf-page {
+  width: 100%;
+}
+
+.page-info {
+  margin: 0;
+}
