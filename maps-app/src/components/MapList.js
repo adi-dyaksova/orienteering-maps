@@ -1,27 +1,19 @@
-// MapList.js
 import React, { useState } from "react";
 import Filters from "./Filters.js";
 import MapListItem from "./MapListItem.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { SearchBar } from '@rneui/themed';
 import SearchBar from "./SearchBar.js";
 import { useEffect } from "react";
 import "../styles/MapList.css";
 
 export default function MapList() {
   const [maps, setMaps] = useState([]);
-  // const [showFilters, setShowFilters] = useState(false);
-  // const [inputs, setInputs] = useState({});
-  // const [resetFilters,setResetFilters]=useState(false);
   const navigate = useNavigate();
 
   function handleAddMapClick() {
     navigate("/addMap");
   }
-  //  function handleShowFilters(){
-  //   setShowFilters(!showFilters);
-  //  }
 
   const fetchAllMaps = () => {
     console.log("fetch");
@@ -50,12 +42,10 @@ export default function MapList() {
   }
 
   function handleSearch(searchTerm) {
-    //TODO: reset button as well
     console.log("handle searchTerm");
     console.log(searchTerm);
-
     axios
-      .post(`http://localhost:8080/api/v1/map/search`, searchTerm) // TODO endpoint
+      .post(`http://localhost:8080/api/v1/map/search`, searchTerm)
       .then((res) => {
         console.log("map searched successfully", res.data);
         setMaps(res.data);

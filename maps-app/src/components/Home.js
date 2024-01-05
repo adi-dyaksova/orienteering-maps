@@ -13,20 +13,23 @@ export default function Home() {
         <h1>If you want to: </h1>
         <ul className="home-page-ul">
           <li className="home-page-li">
-            find a specific map based on country, year or scale or find a course
-            filtered by discipline, distance, age group, etc.
+            Keep all your orienteering maps in one place.
           </li>
           <li className="home-page-li">
-            save your maps/courses so they are always one click away from you{" "}
+            Find specific maps based on location, year, discipline, age group,
+            etc.
           </li>
           <li className="home-page-li">
-            discover remarkable terrains all around the world
+            Download various orienteering maps for offline use.
           </li>
           <li className="home-page-li">
-            share your trainings/ competitions with other orienteers
+            Discover remarkable terrains all around the world.
           </li>
           <li className="home-page-li">
-            see how the sport orienteering has evolved over the years
+            Share your trainings/ competitions with other orienteers.
+          </li>
+          <li className="home-page-li">
+            See how the sport orienteering has evolved over the years.
           </li>
         </ul>
         <h2>That's your place!</h2>

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/maps.iml" filepath="$PROJECT_DIR$/.idea/maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maps/maps.iml" filepath="$PROJECT_DIR$/maps/maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/orienteering-maps-spring-boot.iml" filepath="$PROJECT_DIR$/.idea/orienteering-maps-spring-boot.iml" />
     </modules>
   </component>
 </project>

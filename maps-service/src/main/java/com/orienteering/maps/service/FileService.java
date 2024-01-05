@@ -13,7 +13,8 @@ import java.util.Iterator;
 
 @Service
 public class FileService {
-    private static final String PATH= "D:\\maps\\maps\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
+
+    private static final String PATH= "C:\\Users\\PC\\Desktop\\projects\\orienteering-maps-spring-boot\\maps-service\\src\\main\\java\\com\\orienteering\\maps\\filesystem\\";
 
     private String getFullDirectoryPath(String folderName){
         return PATH+folderName+"\\";
