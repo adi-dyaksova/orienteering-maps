@@ -1,6 +1,6 @@
 # Orienteering Maps Management System
 
-The [Orienteering](https://en.wikipedia.org/wiki/Orienteering) Maps Management System is a web application that allows users to seamlessly search and manage orienteering maps and related courses. This project provides a robust solution for orienteering enthusiasts who want to:
+The Orienteering Maps Management System is a web application that allows users to seamlessly search and manage [orienteering](https://en.wikipedia.org/wiki/Orienteering) maps and related courses. This project provides a robust solution for orienteering enthusiasts who want to:
 - Keep all their orienteering maps in one place.
 - Discover remarkable terrains all around the world.
 - Download various orienteering maps for personal use.
