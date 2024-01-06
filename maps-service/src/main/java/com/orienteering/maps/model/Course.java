@@ -13,7 +13,6 @@ public class Course {
         this.discipline = discipline;
         this.controls = controls;
         this.distance = distance;
-
         this.isCompetition = isCompetition;
     }
 
@@ -61,15 +60,11 @@ public class Course {
 
     @Column(name = "map_id")
     private  Integer mapId;
-    //@Enumerated(EnumType.STRING)
     private  Category category;
-    //@Enumerated(EnumType.STRING)
     private  AgeGroup ageGroup;
-    //@Enumerated(EnumType.STRING)
     private  Discipline discipline;
     private  int controls;
     private  double distance;
-    //@Column(name = "is_competition")
     private  boolean isCompetition;
 
     public Integer getCourseId() {

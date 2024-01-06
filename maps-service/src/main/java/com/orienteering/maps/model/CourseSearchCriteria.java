@@ -2,7 +2,6 @@ package com.orienteering.maps.model;
 import java.util.Optional;
 
 public class CourseSearchCriteria {
-
     private final Optional<Integer> mapId;
     private final Optional<Course.Category> category;
     private  final Optional<Course.AgeGroup> ageGroup;
@@ -54,7 +53,6 @@ public class CourseSearchCriteria {
     public Optional<Double> getMaxDistance() {
         return maxDistance;
     }
-
     public Optional<Boolean> isCompetition() {
         return isCompetition;
     }

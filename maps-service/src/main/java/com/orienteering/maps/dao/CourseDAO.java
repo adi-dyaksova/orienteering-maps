@@ -19,11 +19,9 @@ public interface CourseDAO extends CourseDAOInterface, JpaRepository<Course, Int
         return this.findAll();
     }
 
-
     default Optional<Course> getCourseById(Integer id) {
         return this.findById(id);
     }
-
 
      default int updateCourseById(Integer id, Course newCourse) {
         Optional<Course> courseToUpdate = this.findById(id);
@@ -41,20 +39,6 @@ public interface CourseDAO extends CourseDAOInterface, JpaRepository<Course, Int
 
         return 0;
     }
-
-    //@Query("SELECT c FROM Course c " +
-      //      "WHERE (:categoryFilter IS NULL  OR c.category = :categoryFilter) " +
-        //    "AND (:ageGroupFilter IS NULL  OR c.ageGroup = :ageGroupFilter) " +
-          //  "AND (:disciplineFilter IS NULL OR c.discipline = :disciplineFilter) " +
-        //    "AND (:controlsFilter IS NULL  OR c.controls = :controlsFilter)"+
-          //  "AND (:distanceFilter IS NULL OR c.distance = :distanceFilter)"+
-           // "AND (:isCompetitionFilter IS NULL OR c.isCompetition = :isCompetitionFilter)")
-     //List<Course> getFilteredCourses(@Param("categoryFilter") Course.Category categoryFilter,
-       //                                 @Param("ageGroupFilter") Course.AgeGroup ageGroupFilter,
-         //                               @Param("disciplineFilter") Course.Discipline disciplineFilter,
-           //                             @Param("controlsFilter") Integer controlsFilter,
-             //                           @Param("distanceFilter") Double distanceFilter,
-               //                         @Param("isCompetitionFilter") Boolean isCompetitionFilter);
 
     @Query("SELECT c FROM Course c " +
             "WHERE (:categoryFilter IS NULL OR c.category = :categoryFilter) " +

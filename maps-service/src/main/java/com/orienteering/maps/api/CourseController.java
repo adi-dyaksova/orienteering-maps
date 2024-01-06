@@ -77,7 +77,4 @@ public class CourseController {
         byte[] data= courseService.getCourseFile(courseId);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_PDF).body(data);
     }
-
-
-
 }
